@@ -31,7 +31,7 @@ export type QuickEditShowParams = {
    * Used for Quick Actions where the user has not highlighted code.
    * Instead the range comes from the document symbol.
    */
-  range?: vscode.Range;
+  range?: any;
 };
 
 type FileMiniSearchResult = { filename: string };
@@ -125,9 +125,10 @@ export class QuickEdit {
     }
 
     if (!!args?.range) {
-      this.range = args.range;
+      this.range = new vscode.Range(new vscode.Position(args.range.startLine, args.range.startCharacter), new vscode.Position(args.range.endLine, args.range.endCharacter));
     }
 
+    console.log(this.range);
     // const selectedLabelOrInputVal = await this._getInitialQuickPickVal();
 
     // if (!selectedLabelOrInputVal) {
