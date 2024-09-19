@@ -26,7 +26,7 @@ enum QuickEditInitialItemLabels {
 }
 
 export type QuickEditShowParams = {
-  initialPrompt?: string;
+  prompt?: string;
   /**
    * Used for Quick Actions where the user has not highlighted code.
    * Instead the range comes from the document symbol.
@@ -120,75 +120,25 @@ export class QuickEdit {
 
     const config = await this.configHandler.loadConfig();
 
-    if (!!args?.initialPrompt) {
-      this.initialPrompt = args.initialPrompt;
+    if (!!args?.prompt) {
+      this.initialPrompt = args.prompt;
     }
 
     if (!!args?.range) {
       this.range = args.range;
     }
 
-    const selectedLabelOrInputVal = await this._getInitialQuickPickVal();
+    // const selectedLabelOrInputVal = await this._getInitialQuickPickVal();
 
-    if (!selectedLabelOrInputVal) {
-      return;
-    }
+    // if (!selectedLabelOrInputVal) {
+    //   return;
+    // }
 
-    Telemetry.capture("quickEditSelection", {
-      selection: selectedLabelOrInputVal,
-    });
-
-    let prompt: string | undefined = undefined;
-
-    switch (selectedLabelOrInputVal) {
-      case QuickEditInitialItemLabels.History:
-        const historyVal = await getHistoryQuickPickVal(this.context);
-        prompt = historyVal ?? "";
-        break;
-
-      case QuickEditInitialItemLabels.ContextProviders:
-        const contextProviderVal = await getContextProviderQuickPickVal(
-          config,
-          this.ide,
-        );
-        this.contextProviderStr = contextProviderVal ?? "";
-
-        // Recurse back to let the user write their prompt
-        this.show(args);
-
-        break;
-
-      case QuickEditInitialItemLabels.Model:
-        const curModelTitle = await this.getCurModelTitle();
-
-        if (!curModelTitle) {
-          break;
-        }
-
-        const selectedModelTitle = await getModelQuickPickVal(
-          curModelTitle,
-          config,
-        );
-
-        if (selectedModelTitle) {
-          this._curModelTitle = selectedModelTitle;
-        }
-
-        // Recurse back to let the user write their prompt
-        this.show(args);
-
-        break;
-
-      default:
-        // If it wasn't a label we can assume it was user input
-        if (selectedLabelOrInputVal) {
-          prompt = selectedLabelOrInputVal;
-          appendToHistory(selectedLabelOrInputVal, this.context);
-        }
-    }
-
-    if (prompt) {
-      await this._streamEditWithInputAndContext(prompt);
+    // Telemetry.capture("quickEditSelection", {
+    //   selection: selectedLabelOrInputVal,
+    // });
+    if (this.initialPrompt) {
+      await this._streamEditWithInputAndContext(this.initialPrompt);
     }
   }
 
