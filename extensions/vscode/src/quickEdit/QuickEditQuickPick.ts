@@ -257,6 +257,9 @@ export class QuickEdit {
       this.previousInput,
       this.range,
     );
+
+    console.log("completed stream");
+    vscode.commands.executeCommand("cortex.quickChat.completedStream");
   }
 
   async _getInitialQuickPickVal(): Promise<string | undefined> {

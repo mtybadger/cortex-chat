@@ -156,6 +156,9 @@ export class VerticalPerLineDiffManager {
     // Disable listening to file changes while continue makes changes
     this.disableDocumentChangeListener();
 
+    console.log("acceptRejectVerticalDiffBlock", accept, block);
+    vscode.commands.executeCommand("cortex.quickChat.completedAcceptReject");
+
     // CodeLens object removed from editorToVerticalDiffCodeLens here
     await handler.acceptRejectBlock(
       accept,
