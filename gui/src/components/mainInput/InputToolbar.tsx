@@ -4,6 +4,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { PhotoIcon as SolidPhotoIcon } from "@heroicons/react/24/solid";
 import { InputModifiers } from "core";
+import { RootState } from "../../redux/store";
 import { modelSupportsImages } from "core/llm/autodetect";
 import { useRef, useState } from "react";
 import { useSelector } from "react-redux";
@@ -97,6 +98,7 @@ interface InputToolbarProps {
 
 function InputToolbar(props: InputToolbarProps) {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const active = useSelector((store: RootState) => store.state.active);
   const [fileSelectHovered, setFileSelectHovered] = useState(false);
 
   const defaultModel = useSelector(defaultModelSelector);
@@ -112,8 +114,8 @@ function InputToolbar(props: InputToolbarProps) {
         <span className="flex gap-2 items-center whitespace-nowrap">
           <ModelSelect />
 
-          <SecondToDisappearContainer>
-            <StyledSpan
+          {/* <SecondToDisappearContainer> */}
+            {/* <StyledSpan
               onClick={(e) => {
                 props.onAddContextItem();
               }}
@@ -121,8 +123,8 @@ function InputToolbar(props: InputToolbarProps) {
             >
               Add Context{" "}
               <PlusIcon className="h-2.5 w-2.5" aria-hidden="true" />
-            </StyledSpan>
-            {defaultModel &&
+            </StyledSpan> */}
+            {/* {defaultModel &&
               modelSupportsImages(
                 defaultModel.provider,
                 defaultModel.model,
@@ -166,11 +168,11 @@ function InputToolbar(props: InputToolbarProps) {
                   )}
                 </span>
               )}
-          </SecondToDisappearContainer>
+          </SecondToDisappearContainer> */}
         </span>
 
         <span className="flex items-center gap-2 whitespace-nowrap">
-          {props.showNoContext ? (
+          {/* {props.showNoContext ? (
             <span
               style={{
                 color: props.usingCodebase ? vscBadgeBackground : lightGray,
@@ -204,18 +206,25 @@ function InputToolbar(props: InputToolbarProps) {
             >
               {getMetaKeyLabel()} ⏎ Use codebase
             </StyledSpan>
-          )}
-          <EnterButton
+          )} */}
+
+          {active ? (
+            <StyledSpan>...</StyledSpan>
+          ) : (
+            <EnterButton
             offFocus={props.usingCodebase}
-            onClick={(e) => {
-              props.onEnter({
-                useCodebase: isMetaEquivalentKeyPressed(e),
-                noContext: useActiveFile ? e.altKey : !e.altKey,
-              });
-            }}
-          >
-            ⏎ Enter
-          </EnterButton>
+          onClick={(e) => {
+            props.onEnter({
+              // useCodebase: isMetaEquivalentKeyPressed(e),
+              // noContext: useActiveFile ? e.altKey : !e.altKey,
+              useCodebase: false,
+              noContext: false,
+            });
+              }}
+            >
+              ⏎ Enter
+            </EnterButton>
+          )}
         </span>
       </StyledDiv>
     </>

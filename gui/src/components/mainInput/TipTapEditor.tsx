@@ -135,6 +135,7 @@ interface TipTapEditorProps {
   availableContextProviders: ContextProviderDescription[];
   availableSlashCommands: ComboBoxItem[];
   isMainInput: boolean;
+  isLastUserInput: boolean;
   onEnter: (editorState: JSONContent, modifiers: InputModifiers) => void;
   editorState?: JSONContent;
 }
@@ -276,7 +277,7 @@ function TipTapEditor(props: TipTapEditorProps) {
     }
 
     return historyLengthRef.current === 0
-      ? "Ask anything, '/' for slash commands, '@' to add context"
+      ? "Ask anything about your project"
       : "Ask a follow-up";
   }
 
@@ -412,37 +413,37 @@ function TipTapEditor(props: TipTapEditorProps) {
         },
       }),
       Text,
-      Mention.configure({
-        HTMLAttributes: {
-          class: "mention",
-        },
-        suggestion: getContextProviderDropdownOptions(
-          availableContextProvidersRef,
-          getSubmenuContextItemsRef,
-          enterSubmenu,
-          onClose,
-          onOpen,
-          inSubmenuRef,
-          ideMessenger,
-        ),
-        renderHTML: (props) => {
-          return `@${props.node.attrs.label || props.node.attrs.id}`;
-        },
-      }),
-      SlashCommand.configure({
-        HTMLAttributes: {
-          class: "mention",
-        },
-        suggestion: getSlashCommandDropdownOptions(
-          availableSlashCommandsRef,
-          onClose,
-          onOpen,
-          ideMessenger,
-        ),
-        renderText: (props) => {
-          return props.node.attrs.label;
-        },
-      }),
+      // Mention.configure({
+      //   HTMLAttributes: {
+      //     class: "mention",
+      //   },
+      //   suggestion: getContextProviderDropdownOptions(
+      //     availableContextProvidersRef,
+      //     getSubmenuContextItemsRef,
+      //     enterSubmenu,
+      //     onClose,
+      //     onOpen,
+      //     inSubmenuRef,
+      //     ideMessenger,
+      //   ),
+      //   renderHTML: (props) => {
+      //     return `@${props.node.attrs.label || props.node.attrs.id}`;
+      //   },
+      // }),
+      // SlashCommand.configure({
+      //   HTMLAttributes: {
+      //     class: "mention",
+      //   },
+      //   suggestion: getSlashCommandDropdownOptions(
+      //     availableSlashCommandsRef,
+      //     onClose,
+      //     onOpen,
+      //     ideMessenger,
+      //   ),
+      //   renderText: (props) => {
+      //     return props.node.attrs.label;
+      //   },
+      // }),
       CodeBlockExtension,
     ],
     editorProps: {
@@ -503,16 +504,16 @@ function TipTapEditor(props: TipTapEditorProps) {
         debouncedShouldHideToolbar(false);
       };
 
-      const handleBlur = () => {
-        debouncedShouldHideToolbar(true);
-      };
+      // const handleBlur = () => {
+      //   debouncedShouldHideToolbar(true);
+      // };
 
       editor.on("focus", handleFocus);
-      editor.on("blur", handleBlur);
+      // editor.on("blur", handleBlur);
 
       return () => {
         editor.off("focus", handleFocus);
-        editor.off("blur", handleBlur);
+        // editor.off("blur", handleBlur);
       };
     }
   }, [editor]);
@@ -873,9 +874,10 @@ function TipTapEditor(props: TipTapEditorProps) {
           event.stopPropagation();
         }}
       />
-      <InputToolbar
-        showNoContext={optionKeyHeld}
-        hidden={shouldHideToolbar && !props.isMainInput}
+      {(props.isMainInput || (props.isLastUserInput && active)) && 
+        <InputToolbar
+          showNoContext={optionKeyHeld}
+        hidden={shouldHideToolbar && !props.isLastUserInput}
         onAddContextItem={() => {
           if (editor.getText().endsWith("@")) {
           } else {
@@ -892,8 +894,9 @@ function TipTapEditor(props: TipTapEditorProps) {
               return true;
             });
           });
-        }}
-      />
+          }}
+        />
+}
       {showDragOverMsg &&
         modelSupportsImages(
           defaultModel.provider,

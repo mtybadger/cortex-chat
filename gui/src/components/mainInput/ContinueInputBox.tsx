@@ -87,7 +87,7 @@ function ContinueInputBox(props: ContinueInputBoxProps) {
   return (
     <div
       style={{
-        paddingTop: "4px",
+        paddingTop: "8px",
         backgroundColor: vscBackground,
         display: props.hidden ? "none" : "inherit",
       }}
@@ -98,7 +98,7 @@ function ContinueInputBox(props: ContinueInputBoxProps) {
           backgroundColor: vscBackground,
         }}
       >
-        <GradientBorder
+        {/* <GradientBorder
           loading={active && props.isLastUserInput ? 1 : 0}
           isFirst={false}
           isLast={false}
@@ -106,15 +106,16 @@ function ContinueInputBox(props: ContinueInputBoxProps) {
             active && props.isLastUserInput ? undefined : vscBackground
           }
           borderRadius={defaultBorderRadius}
-        >
+        > */}
           <TipTapEditor
             editorState={props.editorState}
             onEnter={props.onEnter}
+            isLastUserInput={props.isLastUserInput}
             isMainInput={props.isMainInput ?? false}
             availableContextProviders={availableContextProviders ?? []}
             availableSlashCommands={availableSlashCommands}
           ></TipTapEditor>
-        </GradientBorder>
+        {/* </GradientBorder> */}
       </div>
       <ContextItemsPeek contextItems={props.contextItems}></ContextItemsPeek>
     </div>

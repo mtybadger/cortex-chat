@@ -16,6 +16,7 @@ type LocalStorageTypes = {
   showTutorialCard: boolean;
   shownProfilesIntroduction: boolean;
   disableIndexing: boolean;
+  openai_api_key: string;
 };
 
 export function getLocalStorage<T extends keyof LocalStorageTypes>(

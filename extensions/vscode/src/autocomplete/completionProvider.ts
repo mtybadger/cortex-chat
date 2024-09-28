@@ -107,7 +107,7 @@ export class ContinueCompletionProvider
       return null;
     }
 
-    let injectDetails: string | undefined = undefined;
+    let injectDetails: string | undefined = "Please generate no natural language, only code."
     // Here we could use the details from the intellisense dropdown
     // and place them just above the line being typed but because
     // we don't have control over the formatting of the details and

@@ -48,6 +48,7 @@ function EditorInset() {
       <TipTapEditor
         availableContextProviders={availableContextProviders ?? []}
         availableSlashCommands={availableSlashCommands}
+        isLastUserInput={true}
         isMainInput={true}
         onEnter={(e, modifiers) => {
           console.log("Enter: ", e, modifiers);

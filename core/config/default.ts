@@ -6,17 +6,17 @@ import {
 } from "../";
 
 export const DEFAULT_CHAT_MODEL_CONFIG: ModelDescription = {
-  model: "claude-3-5-sonnet-20240620",
-  provider: "anthropic",
+  model: "gpt-4o",
+  provider: "openai",
   apiKey: "",
-  title: "Claude 3.5 Sonnet",
+  title: "GPT-4o",
 };
 
 export const DEFAULT_AUTOCOMPLETE_MODEL_CONFIG: ModelDescription = {
   title: "Codestral",
   provider: "mistral",
   model: "codestral-latest",
-  apiKey: "",
+  apiKey: "73B3zbNPydakwBP1sQLawoENVl1WOq9T",
 };
 
 export const FREE_TRIAL_MODELS: ModelDescription[] = [
@@ -107,16 +107,9 @@ export const defaultSlashCommandsJetBrains = [
 export const defaultConfig: SerializedContinueConfig = {
   models: [DEFAULT_CHAT_MODEL_CONFIG],
   tabAutocompleteModel: DEFAULT_AUTOCOMPLETE_MODEL_CONFIG,
-  customCommands: [
-    {
-      name: "test",
-      prompt:
-        "{{{ input }}}\n\nWrite a comprehensive set of unit tests for the selected code. It should setup, run tests that check for correctness including important edge cases, and teardown. Ensure that the tests are complete and sophisticated. Give the tests just as chat output, don't edit any file.",
-      description: "Write unit tests for highlighted code",
-    },
-  ],
-  contextProviders: defaultContextProvidersVsCode,
-  slashCommands: defaultSlashCommandsVscode,
+  customCommands: [],
+  contextProviders: [],
+  slashCommands: [],
 };
 
 export const defaultConfigJetBrains: SerializedContinueConfig = {

@@ -484,7 +484,7 @@ const commandsMap: (
       //create the full screen panel
       let panel = vscode.window.createWebviewPanel(
         "continue.continueGUIView",
-        "Continue",
+        "Chat",
         vscode.ViewColumn.One,
         {
           retainContextWhenHidden: true,

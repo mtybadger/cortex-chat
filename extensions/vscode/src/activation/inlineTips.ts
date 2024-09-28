@@ -11,9 +11,10 @@ const inlineTipDecoration = vscode.window.createTextEditorDecorationType({
 });
 
 function showInlineTip() {
-  return vscode.workspace
-    .getConfiguration("continue")
-    .get<boolean>("showInlineTip");
+  // return vscode.workspace
+  //   .getConfiguration("continue")
+  //   .get<boolean>("showInlineTip");
+  return false
 }
 
 function handleSelectionChange(e: vscode.TextEditorSelectionChangeEvent) {

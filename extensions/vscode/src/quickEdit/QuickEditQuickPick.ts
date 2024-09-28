@@ -263,7 +263,7 @@ export class QuickEdit {
     const modelTitle = await this.getCurModelTitle();
 
     if (!modelTitle) {
-      this.ide.showToast("info", "Please configure a model to use Quick Edit");
+      this.ide.showToast("info", "Please configure a model in Chat to use Quick Edit");
       return undefined;
     }
 
@@ -325,47 +325,47 @@ export class QuickEdit {
      *
      * If the input is empty, shows the initial items.
      */
-    quickPick.onDidChangeValue((value) => {
-      if (value !== "") {
-        switch (true) {
-          case value.endsWith(QuickEdit.fileSearchChar):
-            quickPick.items = [currentFileItem];
-            break;
+    // quickPick.onDidChangeValue((value) => {
+    //   if (value !== "") {
+    //     switch (true) {
+    //       case value.endsWith(QuickEdit.fileSearchChar):
+    //         quickPick.items = [currentFileItem];
+    //         break;
 
-          case QuickEdit.hasFileSearchQueryRegex.test(value):
-            const lastAtIndex = value.lastIndexOf(QuickEdit.fileSearchChar);
+    //       case QuickEdit.hasFileSearchQueryRegex.test(value):
+    //         const lastAtIndex = value.lastIndexOf(QuickEdit.fileSearchChar);
 
-            // The search query is the last instance of the
-            // search character to the end of the string
-            const searchQuery = value.substring(lastAtIndex + 1);
+    //         // The search query is the last instance of the
+    //         // search character to the end of the string
+    //         const searchQuery = value.substring(lastAtIndex + 1);
 
-            const searchResults = this.miniSearch.search(
-              searchQuery,
-            ) as FileMiniSearchResult[];
+    //         const searchResults = this.miniSearch.search(
+    //           searchQuery,
+    //         ) as FileMiniSearchResult[];
 
-            if (searchResults.length > 0) {
-              quickPick.items = searchResults
-                .map(({ filename }) => ({
-                  label: filename,
-                  alwaysShow: true,
-                }))
-                .slice(0, QuickEdit.maxFileSearchResults);
-            } else {
-              quickPick.items = [noResultsItem];
-            }
+    //         if (searchResults.length > 0) {
+    //           quickPick.items = searchResults
+    //             .map(({ filename }) => ({
+    //               label: filename,
+    //               alwaysShow: true,
+    //             }))
+    //             .slice(0, QuickEdit.maxFileSearchResults);
+    //         } else {
+    //           quickPick.items = [noResultsItem];
+    //         }
 
-            break;
+    //         break;
 
-          default:
-            // The user does not have a file search in progress,
-            // tso only show the submit option
-            quickPick.items = [submitItem];
-            break;
-        }
-      } else {
-        quickPick.items = initialItems;
-      }
-    });
+    //       default:
+    //         // The user does not have a file search in progress,
+    //         // tso only show the submit option
+    //         quickPick.items = [submitItem];
+    //         break;
+    //     }
+    //   } else {
+    //     quickPick.items = initialItems;
+    //   }
+    // });
 
     /**
      * Waits for the user to select an item from the quick pick.

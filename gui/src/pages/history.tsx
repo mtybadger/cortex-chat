@@ -423,9 +423,6 @@ function History() {
           </tbody>
         </table>
         <br />
-        <i className="text-sm ml-4">
-          All session data is saved in ~/.continue/sessions
-        </i>
       </div>
     </div>
   );

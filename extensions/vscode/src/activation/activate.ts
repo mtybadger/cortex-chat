@@ -20,16 +20,16 @@ export async function activateExtension(context: vscode.ExtensionContext) {
 
   const vscodeExtension = new VsCodeExtension(context);
 
-  migrate("showWelcome_1", () => {
-    vscode.commands.executeCommand(
-      "markdown.showPreview",
-      vscode.Uri.file(
-        path.join(getExtensionUri().fsPath, "media", "welcome.md"),
-      ),
-    );
+  // migrate("showWelcome_1", () => {
+  //   vscode.commands.executeCommand(
+  //     "markdown.showPreview",
+  //     vscode.Uri.file(
+  //       path.join(getExtensionUri().fsPath, "media", "welcome.md"),
+  //     ),
+  //   );
 
-    vscode.commands.executeCommand("continue.focusContinueInput");
-  });
+  //   vscode.commands.executeCommand("continue.focusContinueInput");
+  // });
 
   // Load Continue configuration
   if (!context.globalState.get("hasBeenInstalled")) {

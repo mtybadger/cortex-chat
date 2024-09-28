@@ -30,33 +30,13 @@ export type OnboardingCardProps = Pick<OnboardingCardState, "activeTab">;
 function OnboardingCard(props: OnboardingCardProps) {
   const onboardingCard = useOnboardingCard();
 
-  function renderTabContent() {
-    switch (onboardingCard.activeTab) {
-      case "Quickstart":
-        return <Tabs.Quickstart />;
-      case "Best":
-        return <Tabs.Best />;
-      case "Local":
-        return <Tabs.Local />;
-      default:
-        return null;
-    }
-  }
-
   if (getLocalStorage("onboardingStatus") === undefined) {
     setLocalStorage("onboardingStatus", "Started");
   }
 
   return (
     <StyledCard className="relative">
-      <OnboardingCardTabs
-        activeTab={onboardingCard.activeTab}
-        onTabClick={onboardingCard.setActiveTab}
-      />
-      <CloseButton onClick={onboardingCard.close}>
-        <XMarkIcon className="h-5 w-5" />
-      </CloseButton>
-      <div className="content py-4">{renderTabContent()}</div>
+      <Tabs.Quickstart />
     </StyledCard>
   );
 }

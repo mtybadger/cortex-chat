@@ -59,7 +59,7 @@ export async function executeGotoProvider(
     if (gotoCache.size >= MAX_CACHE_SIZE) {
       // Remove the oldest item from the cache
       const oldestKey = gotoCache.keys().next().value;
-      gotoCache.delete(oldestKey);
+      gotoCache.delete(oldestKey as string);
     }
     gotoCache.set(cacheKey, results);
 

@@ -451,6 +451,8 @@ const exe = os === "win32" ? ".exe" : "";
         }
       },
     );
+
+
   });
 
   // Copy node_modules for pre-built binaries
@@ -494,6 +496,30 @@ const exe = os === "win32" ? ".exe" : "";
     "node_modules/jsdom/lib/jsdom/living/xhr/xhr-sync-worker.js",
     "out/xhr-sync-worker.js",
   );
+
+  // Copy esbuild's node_modules/@esbuild to node_modules/@esbuild
+  const esbuildSourcePath = path.join('node_modules', 'esbuild', 'node_modules', '@esbuild');
+  const esbuildDestPath = path.join('out', 'node_modules', '@esbuild');
+
+  if (fs.existsSync(esbuildSourcePath)) {
+    console.log('[info] Copying esbuild files...');
+    fs.mkdirSync(esbuildDestPath, { recursive: true });
+    
+    fs.readdirSync(esbuildSourcePath).forEach((item) => {
+      const srcItem = path.join(esbuildSourcePath, item);
+      const destItem = path.join(esbuildDestPath, item);
+      
+      if (fs.lstatSync(srcItem).isDirectory()) {
+        fs.cpSync(srcItem, destItem, { recursive: true, force: true });
+      } else {
+        fs.copyFileSync(srcItem, destItem);
+      }
+    });
+    
+    console.log('[info] Finished copying esbuild files');
+  } else {
+    console.log('[warning] esbuild source directory not found, skipping copy');
+  }
 
   // Validate the all of the necessary files are present
   validateFilesPresent([

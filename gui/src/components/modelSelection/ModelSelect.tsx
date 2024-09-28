@@ -191,15 +191,15 @@ function ModelOption({
       <div className="flex flex-col w-full gap-0.5">
         <div className="flex items-center justify-between w-full">
           <div className="flex items-center flex-grow">
-            <CubeIcon className="w-4 h-4 mr-2 flex-shrink-0" />
+            {/* <CubeIcon className="w-4 h-4 mr-2 flex-shrink-0" /> */}
             <span className="flex-grow">{option.title}</span>
           </div>
-          <div className="flex items-center ml-2">
+          {/* <div className="flex items-center ml-2">
             <StyledCog6ToothIcon hovered={hovered} onClick={onClickGear} />
             {showDelete && (
               <StyledTrashIcon hovered={hovered} onClick={onClickDelete} />
             )}
-          </div>
+          </div> */}
         </div>
 
         {showMissingApiKeyMsg && (
@@ -337,7 +337,7 @@ function ModelSelect() {
           </div>
 
           <div className="mt-auto">
-            {selectedProfileId === "local" && (
+            {/* {selectedProfileId === "local" && (
               <>
                 {options.length > 0 && <Divider className="!my-0" />}
 
@@ -352,13 +352,13 @@ function ModelSelect() {
                   </div>
                 </StyledListboxOption>
               </>
-            )}
+            )} */}
 
             <Divider className="!my-0" />
-
+{/* 
             <span className="block px-3 py-3" style={{ color: lightGray }}>
               <code>{getMetaKeyLabel()} + '</code> to toggle
-            </span>
+            </span> */}
           </div>
         </StyledListboxOptions>
       </div>

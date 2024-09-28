@@ -239,7 +239,7 @@ const Layout = () => {
           <ModelDropdownPortalDiv id="model-select-top-div"></ModelDropdownPortalDiv>
           <ProfileDropdownPortalDiv id="profile-select-top-div"></ProfileDropdownPortalDiv>
           <Footer>
-            <div className="mr-auto flex flex-grow gap-2 items-center overflow-hidden">
+            {/* <div className="mr-auto flex flex-grow gap-2 items-center overflow-hidden">
               {defaultModel?.provider === "free-trial" && (
                 <ProgressBar
                   completed={parseInt(localStorage.getItem("ftc") || "0")}
@@ -261,7 +261,7 @@ const Layout = () => {
               }}
             >
               <EllipsisHorizontalCircleIcon width="1.4em" height="1.4em" />
-            </HeaderButtonWithText>
+            </HeaderButtonWithText> */}
           </Footer>
         </GridDiv>
 
