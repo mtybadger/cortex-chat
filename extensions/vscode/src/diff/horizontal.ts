@@ -258,6 +258,8 @@ export class DiffManager {
       return;
     }
 
+    vscode.commands.executeCommand("cortex.quickChat.completedAcceptReject");
+
     // Save the right-side file, then copy over to original
     vscode.workspace.textDocuments
       .find((doc) => doc.uri.fsPath === newFilepath)
@@ -290,6 +292,8 @@ export class DiffManager {
       console.log("No corresponding diffInfo found for newFilepath");
       return;
     }
+
+    vscode.commands.executeCommand("cortex.quickChat.completedAcceptReject");
 
     // Stop the step at step_index in case it is still streaming
     this.webviewProtocol?.request("setInactive", undefined);
