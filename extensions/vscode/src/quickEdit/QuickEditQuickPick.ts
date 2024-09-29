@@ -244,9 +244,18 @@ export class QuickEdit {
       );
     }
 
+    // Add the current file in the editor
+    const currentFilePath = this.editorWhenOpened.document.uri.fsPath;
+    const currentFileContent = await this.ide.readFile(currentFilePath);
+    const currentFileRelativePath = vscode.workspace.asRelativePath(currentFilePath, true);
+
+    prompt += `\n\nCurrent file in editor:\n\`\`\`${currentFileRelativePath}\n${currentFileContent}\n\`\`\`\n\n`;
+
     if (this.contextProviderStr) {
       prompt = this.contextProviderStr + prompt;
     }
+
+    console.log("prompt", prompt);
 
     this.webviewProtocol.request("incrementFtc", undefined);
 

@@ -333,7 +333,7 @@ function TipTapEditor(props: TipTapEditorProps) {
 
               onEnterRef.current({
                 useCodebase: false,
-                noContext: !useActiveFile,
+                noContext: false,
               });
               return true;
             },

@@ -187,6 +187,9 @@ function useChatHandler(dispatch: Dispatch, ideMessenger: IIdeMessenger) {
           defaultContextProviders,
         );
 
+      console.log("selectedContextItems", selectedContextItems);
+      console.log("modifiers", modifiers);
+
       // Automatically use currently open file
       if (!modifiers.noContext) {
         const usingFreeTrial = defaultModel?.provider === "free-trial";
@@ -202,6 +205,8 @@ function useChatHandler(dispatch: Dispatch, ideMessenger: IIdeMessenger) {
               .slice(0, 1000)
               .join("\n");
           }
+          console.log("currentFilePath", currentFilePath);
+          console.log("currentFileContents", currentFileContents);
           selectedContextItems.unshift({
             content: `The following file is currently open. Don't reference it if it's not relevant to the user's message.\n\n\`\`\`${getRelativePath(
               currentFilePath,

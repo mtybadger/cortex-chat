@@ -2,7 +2,7 @@
   "name": "continue",
   "icon": "media/icon.png",
   "author": "Continue Dev, Inc",
-  "version": "0.8.61",
+  "version": "0.8.63",
   "repository": {
     "type": "git",
     "url": "https://github.com/continuedev/continue"
@@ -162,6 +162,12 @@
         "command": "continue.focusContinueInput",
         "category": "Continue",
         "title": "Add Highlighted Code to Context",
+        "group": "Continue"
+      },
+      {
+        "command": "continue.focusContinueInputWithText",
+        "category": "Continue",
+        "title": "Add Code to Context",
         "group": "Continue"
       },
       {

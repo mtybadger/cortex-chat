@@ -243,6 +243,10 @@ export class DiffManager {
   }
 
   async acceptDiff(newFilepath?: string) {
+
+    console.log("accept diff");
+    vscode.commands.executeCommand("cortex.quickChat.completedAcceptReject");
+
     // When coming from a keyboard shortcut, we have to infer the newFilepath from visible text editors
     if (!newFilepath) {
       newFilepath = this.inferNewFilepath();
@@ -257,8 +261,6 @@ export class DiffManager {
       console.log("No corresponding diffInfo found for newFilepath");
       return;
     }
-
-    vscode.commands.executeCommand("cortex.quickChat.completedAcceptReject");
 
     // Save the right-side file, then copy over to original
     vscode.workspace.textDocuments
@@ -276,6 +278,10 @@ export class DiffManager {
   }
 
   async rejectDiff(newFilepath?: string) {
+
+    console.log("reject diff");
+    vscode.commands.executeCommand("cortex.quickChat.completedAcceptReject");
+
     // If no newFilepath is provided and there is only one in the dictionary, use that
     if (!newFilepath) {
       newFilepath = this.inferNewFilepath();
@@ -292,8 +298,7 @@ export class DiffManager {
       console.log("No corresponding diffInfo found for newFilepath");
       return;
     }
-
-    vscode.commands.executeCommand("cortex.quickChat.completedAcceptReject");
+    
 
     // Stop the step at step_index in case it is still streaming
     this.webviewProtocol?.request("setInactive", undefined);

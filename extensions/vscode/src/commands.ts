@@ -162,6 +162,31 @@ async function addEntireFileToContext(
   });
 }
 
+async function addCodeToContext(
+  code: string,
+  webviewProtocol: VsCodeWebviewProtocol | undefined,
+) {
+  const rangeInFileWithContents = {
+    filepath: "LaTeX Compiler Log", // Use a placeholder filename
+    contents: code,
+    range: {
+      start: {
+        line: 0,
+        character: 0,
+      },
+      end: {
+        line: code.split(os.EOL).length - 1,
+        character: 0,
+      },
+    },
+  };
+
+  webviewProtocol?.request("highlightedCode", {
+    rangeInFileWithContents,
+  });
+}
+
+
 // Copy everything over from extension.ts
 const commandsMap: (
   ide: IDE,
@@ -310,6 +335,18 @@ const commandsMap: (
       }
       sidebar.webviewProtocol?.request("focusContinueInput", undefined);
       await addHighlightedCodeToContext(sidebar.webviewProtocol);
+    },
+    "continue.focusContinueInputWithText": async (text: string) => {
+      const fullScreenTab = getFullScreenTab();
+      if (!fullScreenTab) {
+        // focus sidebar
+        vscode.commands.executeCommand("continue.continueGUIView.focus");
+      } else {
+        // focus fullscreen
+        fullScreenPanel?.reveal();
+      }
+      sidebar.webviewProtocol?.request("focusContinueInput", undefined);
+      await addCodeToContext(text, sidebar.webviewProtocol);
     },
     "continue.focusContinueInputWithoutClear": async () => {
       const fullScreenTab = getFullScreenTab();
