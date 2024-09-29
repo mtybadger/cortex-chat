@@ -116,7 +116,7 @@ function useSetup(dispatch: Dispatch<any>) {
   useWebviewListener("submitMessage", async (data) => {
     streamResponse(
       data.message,
-      { useCodebase: false, noContext: true },
+      { useCodebase: false, noContext: false },
       ideMessenger,
     );
   });

@@ -655,7 +655,7 @@ function TipTapEditor(props: TipTapEditorProps) {
         return;
       }
       editor?.commands.insertContent(data.input);
-      onEnterRef.current({ useCodebase: false, noContext: true });
+      onEnterRef.current({ useCodebase: false, noContext: false });
     },
     [editor, onEnterRef.current, props.isMainInput],
   );
