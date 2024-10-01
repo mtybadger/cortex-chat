@@ -15,8 +15,7 @@ export const DEFAULT_CHAT_MODEL_CONFIG: ModelDescription = {
 export const DEFAULT_AUTOCOMPLETE_MODEL_CONFIG: ModelDescription = {
   title: "Cortex Autocomplete",
   provider: "cortex",
-  model: "cortex-tab",
-  apiKey: "",
+  model: "cortex-tab"
 };
 
 export const FREE_TRIAL_MODELS: ModelDescription[] = [
