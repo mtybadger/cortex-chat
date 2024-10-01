@@ -334,7 +334,7 @@ function TipTapEditor(props: TipTapEditorProps) {
               console.log("Enter");
 
               onEnterRef.current({
-                useCodebase: true,
+                useCodebase: false,
                 noContext: false,
               });
               return true;
