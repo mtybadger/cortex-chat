@@ -596,6 +596,7 @@ declare global {
     | "cloudflare"
     | "deepseek"
     | "azure"
+    | "cortex"
     | "openai-aiohttp"
     | "msty"
     | "watsonx"

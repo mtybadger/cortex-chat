@@ -18,6 +18,7 @@ import DeepInfra from "./DeepInfra";
 import Deepseek from "./Deepseek";
 import Fireworks from "./Fireworks";
 import Flowise from "./Flowise";
+import Cortex from "./Cortex";
 import FreeTrial from "./FreeTrial";
 import Gemini from "./Gemini";
 import Groq from "./Groq";
@@ -67,6 +68,7 @@ const LLMs = [
   Flowise,
   Groq,
   Fireworks,
+  Cortex,
   ContinueProxy,
   Cloudflare,
   Deepseek,

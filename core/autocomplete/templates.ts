@@ -325,7 +325,8 @@ export function getTemplateForModel(model: string): AutocompleteTemplate {
     lowerCaseModel.includes("octocoder") ||
     lowerCaseModel.includes("stable") ||
     lowerCaseModel.includes("codeqwen") ||
-    lowerCaseModel.includes("qwen")
+    lowerCaseModel.includes("qwen") ||
+    lowerCaseModel.includes("cortex")
   ) {
     return stableCodeFimTemplate;
   }

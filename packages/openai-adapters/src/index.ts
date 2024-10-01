@@ -63,6 +63,11 @@ export function constructLlmApi(config: LlmApiConfig): BaseLlmApi {
         ...config,
         apiBase: "https://api.fireworks.ai/inference/v1",
       });
+    case "cortex":
+      return new OpenAIApi({
+        ...config,
+        apiBase: "https://fb0hb1aid6.execute-api.us-east-1.amazonaws.com/prod",
+      });
     case "together":
       return new OpenAIApi({
         ...config,

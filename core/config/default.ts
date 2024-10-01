@@ -13,10 +13,10 @@ export const DEFAULT_CHAT_MODEL_CONFIG: ModelDescription = {
 };
 
 export const DEFAULT_AUTOCOMPLETE_MODEL_CONFIG: ModelDescription = {
-  title: "Codestral",
-  provider: "mistral",
-  model: "codestral-latest",
-  apiKey: "73B3zbNPydakwBP1sQLawoENVl1WOq9T",
+  title: "Cortex Autocomplete",
+  provider: "cortex",
+  model: "cortex-tab",
+  apiKey: "",
 };
 
 export const FREE_TRIAL_MODELS: ModelDescription[] = [

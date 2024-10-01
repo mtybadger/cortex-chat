@@ -640,6 +640,7 @@ type ModelProvider =
   | "openrouter"
   | "sambanova"
   | "nvidia"
+  | "cortex"
   | "vllm"
   | "mock";
 

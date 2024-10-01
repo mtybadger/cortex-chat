@@ -363,6 +363,7 @@ class VsCodeIde implements IDE {
   }
 
   async getWorkspaceDirs(): Promise<string[]> {
+    console.log("getWorkspaceDirs called");
     return this.ideUtils.getWorkspaceDirectories();
   }
 
@@ -435,6 +436,7 @@ class VsCodeIde implements IDE {
   }
 
   async getCurrentFile(): Promise<string | undefined> {
+    console.log("getCurrentFile called", vscode.window.activeTextEditor?.document.uri.fsPath);
     return vscode.window.activeTextEditor?.document.uri.fsPath;
   }
 
