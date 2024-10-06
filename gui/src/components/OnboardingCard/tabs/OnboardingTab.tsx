@@ -33,13 +33,6 @@ function OnboardingQuickstartTab() {
       title: chatModel.params.title,
     };
 
-    const autocompleteModelConfig = {
-      title: autocompleteModel.params.title,
-      provider: autocompleteProvider.provider,
-      model: autocompleteModel.params.model,
-      apiKey: "73B3zbNPydakwBP1sQLawoENVl1WOq9T",
-    };
-
     try {
       const openaiInstance = new openai({ apiKey, dangerouslyAllowBrowser: true });
       const completion = await openaiInstance.chat.completions.create({
@@ -60,7 +53,11 @@ function OnboardingQuickstartTab() {
       dispatch(setDefaultModel({ title: chatModelConfig.title, force: true }));
   
       await ideMessenger.request("addAutocompleteModel", {
-        model: autocompleteModelConfig,
+        model: {
+          title: "Cortex Autocomplete",
+          provider: "cortex",
+          model: "cortex-tab"
+        },
       });
 
       setLocalStorage('onboardingStatus', 'Completed');

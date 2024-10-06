@@ -245,14 +245,14 @@ export class QuickEdit {
     }
 
     // Add the current file in the editor
-    const currentFilePath = this.editorWhenOpened.document.uri.fsPath;
-    const currentFileContent = await this.ide.readFile(currentFilePath);
-    const currentFileRelativePath = vscode.workspace.asRelativePath(currentFilePath, true);
+    // const currentFilePath = this.editorWhenOpened.document.uri.fsPath;
+    // const currentFileContent = await this.ide.readFile(currentFilePath);
+    // const currentFileRelativePath = vscode.workspace.asRelativePath(currentFilePath, true);
 
-    prompt += `\n\nCurrent file in editor:\n\`\`\`${currentFileRelativePath}\n${currentFileContent}\n\`\`\`\n\n`;
+    // prompt += `\n\nCurrent file in editor:\n\`\`\`${currentFileRelativePath}\n${currentFileContent}\n\`\`\`\n\n`;
 
     if (this.contextProviderStr) {
-      prompt = this.contextProviderStr + prompt;
+      prompt = this.contextProviderStr + prompt + "\n\nThe user is editing a paper in LaTeX.\n\n";
     }
 
     console.log("prompt", prompt);
