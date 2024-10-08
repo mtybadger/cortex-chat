@@ -12,13 +12,16 @@ class Cortex extends OpenAI {
       "Content-Type": "application/json",
       Authorization: `Bearer ${this.apiKey}`,
       "api-key": this.apiKey ?? "", // For Azure
-      "x-api-key": "z8MuPSf4Jf8CzSPJvUstE4dab4PRUHzB98I3CapH"
+      "x-api-key": "uMrxtqG5jk9dBqPBPk8Vn2r2TSuBV84J9pcNMoJa"
     };
   }
 
+  supportsFim(): boolean {
+    return true
+  }
+  
   private static modelConversion: { [key: string]: string } = {
-    "cortex-tab2": "accounts/fireworks/models/starcoder-16b",
-    "cortex-tab": "accounts/fireworks/models/starcoder-7b"
+    "cortex-tab": "codestral-latest"
   };
   protected _convertModelName(model: string): string {
     return Cortex.modelConversion[model] ?? model;

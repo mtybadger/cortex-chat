@@ -207,7 +207,7 @@ class OpenAI extends BaseLLM {
         stream: true,
       }),
     });
-
+  
     for await (const value of streamSse(response)) {
       if (value.choices?.[0]?.text && value.finish_reason !== "eos") {
         yield value.choices[0].text;
@@ -273,7 +273,7 @@ class OpenAI extends BaseLLM {
     const resp = await this.fetch(endpoint, {
       method: "POST",
       body: JSON.stringify({
-        model: options.model,
+        model: this._convertModelName(options.model),
         prompt: prefix,
         suffix,
         max_tokens: options.maxTokens,
@@ -284,12 +284,7 @@ class OpenAI extends BaseLLM {
         stop: options.stop,
         stream: true,
       }),
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        "x-api-key": this.apiKey ?? "",
-        Authorization: `Bearer ${this.apiKey}`,
-      },
+      headers: this._getHeaders(),
     });
     for await (const chunk of streamSse(resp)) {
       yield chunk.choices[0].delta.content;

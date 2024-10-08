@@ -2,7 +2,7 @@
   "name": "continue",
   "icon": "media/icon.png",
   "author": "Continue Dev, Inc",
-  "version": "0.8.68",
+  "version": "0.8.72",
   "repository": {
     "type": "git",
     "url": "https://github.com/continuedev/continue"
@@ -574,6 +574,7 @@
     "read-last-lines": "^1.8.0",
     "request": "^2.88.2",
     "socket.io-client": "^4.7.2",
+    "sqlite3": "^5.1.7",
     "strip-ansi": "^7.1.0",
     "systeminformation": "^5.22.10",
     "tailwindcss": "^3.3.2",
